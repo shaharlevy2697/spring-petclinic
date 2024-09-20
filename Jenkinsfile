@@ -1,13 +1,7 @@
 pipeline {
     agent any
 
-    // stages {
-    //     stage('Checkout') {
-    //         steps {
-    //             git url: 'https://github.com/shaharlevy2697/spring-petclinic.git'
-    //         }
-    //     }
-
+    stages {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
