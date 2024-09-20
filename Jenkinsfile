@@ -4,7 +4,7 @@ pipeline {
     // stages {
     //     stage('Checkout') {
     //         steps {
-    //             git url: 'https://github.com/<your-username>/<your-repo>.git'
+    //             git url: 'https://github.com/shaharlevy2697/spring-petclinic.git'
     //         }
     //     }
 
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     def buildNumber = env.BUILD_NUMBER
-                    def image = docker.build("<your-dockerhub-username>/spring-petclinic:${buildNumber}")
+                    def image = docker.build("shaharlevy2697/spring-petclinic:${buildNumber}")
                     image.push()
                     image.push('latest')
                 }
