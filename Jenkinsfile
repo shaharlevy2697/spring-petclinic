@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        CREDENTIALD_ID="docker-hub"
-    }
     stages {
         // stage('SonarQube Analysis') {
         //     steps {
@@ -15,13 +12,18 @@ pipeline {
             steps {
                 script {
                     def buildNumber = env.BUILD_NUMBER
-                    // Use double quotes for variable interpolation
-                    sh "docker build -t sasnow/spring-petclinic:latest -t sasnow/spring-petclinic:${buildNumber} ."
-                    sh "docker images"
-                    sh "df -h"
-                    echo "${buildNumber}"
-                    sh "docker push sasnow/spring-petclinic:latest"
-                    sh "docker push sasnow/spring-petclinic:${buildNumber}"
+
+                    // Use Jenkins credentials for Docker login
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        // Docker login
+                        sh "echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin"
+                        
+                        // Build the Docker image
+                        sh "docker build -t sasnow/spring-petclinic:latest -t sasnow/spring-petclinic:${buildNumber} ."
+                        
+                        // Push the Docker images
+                        sh "docker push sasnow/spring-petclinic:latest"
+                        sh "docker push sasnow/spring-petclinic:${buildNumber}"
                 }
             }
         }
