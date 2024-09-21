@@ -11,7 +11,16 @@ pipeline {
         // }
         stage('Build') {
             steps {
-                sh 'docker build .'
+                script {
+                    def buildNumber = env.BUILD_NUMBER
+                    // Use double quotes for variable interpolation
+                    sh "docker build -t sasnow/spring-petclinic:latest -t sasnow/spring-petclinic:${buildNumber} ."
+                    sh "docker images"
+                    sh "df -h"
+                    echo "${buildNumber}"
+                    sh "docker push sasnow/spring-petclinic:latest"
+                    sh "docker push sasnow/spring-petclinic:${buildNumber}"
+                }
             }
         }
         // stage('Build') {
