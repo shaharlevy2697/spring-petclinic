@@ -27,13 +27,13 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
-            steps {
-                kubernetesDeploy(
-                    configs: 'k8s/helm-chart',
-                    kubeconfigId: 'kubeconfig-credential-id'
-                )
-            }
-        }
+        // stage('Deploy to Kubernetes') {
+        //     steps {
+        //         kubernetesDeploy(
+        //             configs: 'k8s/helm-chart',
+        //             kubeconfigId: 'kubeconfig-credential-id'
+        //         )
+        //     }
+        // }
     }
 }
