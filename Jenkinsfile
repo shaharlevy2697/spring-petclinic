@@ -14,7 +14,7 @@ pipeline {
                     def buildNumber = env.BUILD_NUMBER
                     withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                         // Docker login
-                        sh "echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin"
+                        sh "docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
                         
                         // Build the Docker image
                         sh "docker build -t sasnow/spring-petclinic:latest -t sasnow/spring-petclinic:${buildNumber} ."
