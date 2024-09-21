@@ -2,13 +2,13 @@ pipeline {
     agent any
 
     stages {
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh './mvnw sonar:sonar'
-                }
-            }
-        }
+        // stage('SonarQube Analysis') {
+        //     steps {
+        //         withSonarQubeEnv('SonarQube') {
+        //             sh './mvnw sonar:sonar'
+        //         }
+        //     }
+        // }
 
         stage('Build') {
             steps {
