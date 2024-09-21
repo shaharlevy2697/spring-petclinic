@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    environment{
+    environment {
         credentials
         CREDENTIALD_ID="docker-hub"
     }
