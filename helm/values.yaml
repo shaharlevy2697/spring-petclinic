@@ -1,0 +1,11 @@
+app:
+  name: spring-petclinic
+
+image:
+  repository: sasnow/spring-petclinic
+  tag: latest
+
+service:
+  type: ClusterIP
+
+
