@@ -1,0 +1,29 @@
+node {
+   def commit_id
+   def docker_login = 'shahardocker'
+   def docker_image = 'sasnow/devopscurse'
+   stage('step pre') {
+     checkout scm
+     sh "git rev-parse --short HEAD > .git/commit-id"                        
+     commit_id = readFile('.git/commit-id').trim()
+   }
+   stage('test') {
+     nodejs(nodeJSInstallationName: 'NodeJS') {
+       dir("basics"){
+       sh 'npm install --only=dev'
+       sh 'npm test'
+       }
+     }
+   }
+   stage('docker build/push') {
+     docker.withRegistry('https://index.docker.io/v1/', "${docker_login}") {
+       def app = docker.build("yanivomc/docker-nodejs-demo:${commit_id}", '.').push()
+     }
+   }
+   stage('docker run') {
+     sh "docker run --rm -tid --name docker_test -p 3000 yanivomc/docker-nodejs-demo:${commit_id}"
+     sh 'docker kill docker_test'
+      
+     }
+   }
+
