@@ -13,6 +13,6 @@ RUN ./mvnw package
 # Stage 3: Create Final Image
 FROM openjdk:17-jdk-slim
 WORKDIR /code
-COPY --from=builder /app/target/*.jar /code/
-CMD ["java", "-jar", "/code/*.jar"]
+COPY --from=builder /app/target/*.jar /code/app.jar
+CMD ["java", "-jar", "/code/app.jar"]
 
