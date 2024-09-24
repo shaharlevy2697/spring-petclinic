@@ -1,4 +1,4 @@
-Stage 1: SonarQube Analysis
+#Stage 1: SonarQube Analysis
 FROM maven:3.8.5-openjdk-17 AS sonar
 WORKDIR /app
 COPY . .
