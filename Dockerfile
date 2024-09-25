@@ -7,8 +7,6 @@ COPY . .
 RUN mvn clean install
 
 RUN mvn sonar:sonar \
-  -Dsonar.issue.ignore.multicriteria=e1 \
-  -Dsonar.issue.ignore.multicriteria.e1.ruleKey=checkstyle:NoHttpCheck \
   -Dsonar.host.url=http://20.224.19.207:9000 \
   -Dsonar.login=squ_900bb33ebc9fbc1d6bf974fa87b2592150084db6
 
