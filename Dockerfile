@@ -18,7 +18,8 @@ WORKDIR /app
 
 # Copy the project again (if needed) and build the final artifact
 COPY . .
-RUN ./mvnw clean package
+RUN mvn clean package
+#RUN ./mvnw clean package
 
 # Stage 3: Create Final Image
 FROM openjdk:17-jdk-slim
