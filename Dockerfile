@@ -13,7 +13,7 @@ RUN mvn sonar:sonar \
     -Dsonar.host.url=http://20.224.19.207:9000 \
     -Dsonar.login=squ_900bb33ebc9fbc1d6bf974fa87b2592150084db6 \
     -Dsonar.qualitygate.wait=false \
-    -Dsonar.java.binaries=target/classes
+    -Dsonar.java.binaries=target/classes || exit 1
 
 # Stage 2: Build the final artifact
 FROM maven:3.8.5-openjdk-17 AS builder
