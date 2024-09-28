@@ -6,7 +6,7 @@ RUN ./mvnw package
 
 RUN  mvn sonar:sonar \
     -Dsonar.host.url=http://20.224.19.207:9000 \
-    -Dsonar.login=squ_900bb33ebc9fbc1d6bf974fa87b2592150084db6 \
+    -Dsonar.login=sqa_55fb99cf571c3ab44349acac72cd21d32ce49b68 \
     -Dsonar.qualitygate.wait=false
 
 # Stage 3: Create Final Image
