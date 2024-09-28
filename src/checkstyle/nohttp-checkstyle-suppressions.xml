@@ -1,11 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE suppressions PUBLIC
-		"-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
-		"https://checkstyle.org/dtds/suppressions_1_2.dtd">
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 <suppressions>
-	<suppress files="node_modules[\\/].*" checks=".*"/>
-	<suppress files="node[\\/].*" checks=".*"/>
-	<suppress files="build[\\/].*" checks=".*"/>
-	<suppress files="target[\\/].*" checks=".*"/>
-	<suppress files=".+\.(jar|git|ico|p12|gif|jks|jpg|svg|log)" checks="NoHttp"/>
+    <!-- Suppress NoHttp check for specific files and extensions -->
+    <suppress files="node_modules[\\/].*" checks=".*"/>
+    <suppress files="node[\\/].*" checks=".*"/>
+    <suppress files="build[\\/].*" checks=".*"/>
+    <suppress files="target[\\/].*" checks=".*"/>
+    <suppress files=".+\.(jar|git|ico|p12|gif|jks|jpg|svg|log)" checks="NoHttp"/>
+    
+    <!-- Suppress NoHttp check for the specific SonarQube URL -->
+    <suppress checks="NoHttp" files=".*" message="http://20.224.19.207:9000"/>
 </suppressions>
