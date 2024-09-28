@@ -13,4 +13,4 @@ RUN  mvn sonar:sonar \
 FROM openjdk:17-jdk-slim
 WORKDIR /code
 COPY --from=builder /app/target/*.jar /code/app.jar
-CMD ["java", "-jar", "/code/app.jar"
+CMD ["java", "-jar", "/code/app.jar"}
